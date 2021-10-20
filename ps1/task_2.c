@@ -27,7 +27,10 @@ void turn_right(){
 }
 
 void chod(){
-    while(left_is_blocked()){
+    while(left_is_blocked()&&front_is_clear()){
+    if(beepers_present()){
+        navrat();
+    }
     step();
     }
     if(beepers_present()){
