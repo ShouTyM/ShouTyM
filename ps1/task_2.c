@@ -2,34 +2,19 @@
 
 void turn_right();
 void chod();
+void turn_around();
 void navrat();
 
 int main(){
 
     turn_on("task_2.kw");
 
-    set_step_delay(50);
+    set_step_delay(150);
 
-    while(beepers_present()==false){
+    while(no_beepers_present()){
         chod();
     }
-
-    while(beepers_present()){
-        pick_beeper();
-    }
-
-    while(no_beepers_in_bag()==false){
-      turn_left();
-      turn_left();
-      navrat();
-      if(front_is_blocked()&&left_is_blocked()&&right_is_blocked()){
-        break;
-      }
-    }
-    
-    do{
-        turn_left();
-    }while(not_facing_north());
+    navrat();
 
     turn_off();
     return 0;
@@ -43,17 +28,37 @@ void turn_right(){
 
 void chod(){
     while(left_is_blocked()){
-        step();
+    step();
     }
+    if(beepers_present()){
+        turn_around();
+        navrat();
+    }
+    if(front_is_blocked()){
     turn_left();
     step();
+    }
+}
+
+void turn_around(){
+    turn_left();
+    turn_left();
 }
 
 void navrat(){
-   while(left_is_blocked()&&front_is_clear()){
-        step();
+    while(beepers_present()){
+        pick_beeper();
     }
-    do{
-    turn_right();
-    }while(front_is_clear());
+    if(front_is_blocked()){
+        turn_around();
+    }
+    while(beepers_in_bag()){
+        while(front_is_blocked()){
+        turn_right();
+        }
+            step();
+            if(right_is_blocked()&&left_is_blocked()&&front_is_blocked()){
+            turn_off();
+            }
+      }
 }
