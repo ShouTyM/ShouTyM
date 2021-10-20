@@ -42,7 +42,7 @@ void turn_right(){
 void skakanie(){ 
 
     if(front_is_blocked()){
-        turn_right();
+        turn_left();
     }
 
     if(front_is_clear()){
@@ -57,7 +57,7 @@ void skakanie(){
 void naspat(){
 
     if(front_is_blocked()){
-        turn_left();
+        turn_right();
     }
 
     if(front_is_clear()){
@@ -73,6 +73,8 @@ void kotva(){
     while(no_beepers_in_bag()==false){
         put_beeper();
     }
+    while(front_is_blocked()){
     turn_left();
+    }
     step();
 }
