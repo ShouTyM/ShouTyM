@@ -6,7 +6,7 @@ void hladaj();
 
 int main(){
     turn_on("task_4.kw");
-    set_step_delay(100);   
+    set_step_delay(300);   
 
 
     hladaj();

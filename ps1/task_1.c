@@ -1,22 +1,25 @@
 #include <superkarel.h>
     
+void test();    
 void turn_right();
 void skakanie();
 void naspat();
 void kotva();
 
 int main(){
-    turn_on("test00.kw");
+    turn_on("task_1.kw");
     
     set_step_delay(100);
 
     kotva();
 
-    while(beepers_present()==false){
+    while(beepers_in_bag()==false){
         skakanie();
     }
 
-    pick_beeper();
+    while(not_facing_north()){
+        turn_left();
+    }
 
     while(beepers_present()==false){
         naspat();
@@ -42,30 +45,30 @@ void turn_right(){
 void skakanie(){ 
 
     if(front_is_blocked()){
-        turn_left();
+       turn_left();
     }
 
     if(front_is_clear()){
-        step();
+       step();
+       test();
     }
     
     if(right_is_clear()){
-        turn_right();
+       turn_right();
     }
 }
 
 void naspat(){
-
-    if(front_is_blocked()){
+    if(front_is_blocked()&&left_is_blocked()){
         turn_right();
     }
-    
+
     if(left_is_clear()){
-        turn_left();
+       turn_left();
     }
 
     if(front_is_clear()){
-        step();
+       step();
     }
 }
 
@@ -73,8 +76,10 @@ void kotva(){
     while(no_beepers_in_bag()==false){
         put_beeper();
     }
-    while(front_is_blocked()){
-    turn_left();
+}
+
+void test(){
+    if(beepers_present()){
+        pick_beeper();
     }
-   step();
 }

@@ -12,7 +12,7 @@ void kotva();
 int main(){
 
     turn_on("task_5.kw");
-    set_step_delay(20);
+    set_step_delay(100);
 
     corner();
     turn_left();
