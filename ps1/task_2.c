@@ -14,6 +14,7 @@ int main(){
     while(no_beepers_present()){
         chod();
     }
+    turn_around();
     navrat();
 
     turn_off();
@@ -33,7 +34,9 @@ void chod(){
         navrat();
 
     }
-    step();
+    if(beepers_in_bag()==false){
+        step();
+    }
     }
     if(beepers_present()){
         turn_around();
