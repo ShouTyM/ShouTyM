@@ -6,7 +6,7 @@ void naspat();
 void kotva();
 
 int main(){
-    turn_on("task_1.kw");
+    turn_on("test00.kw");
     
     set_step_delay(100);
 
@@ -59,13 +59,13 @@ void naspat(){
     if(front_is_blocked()){
         turn_right();
     }
-
-    if(front_is_clear()){
-        step();
-    }
     
     if(left_is_clear()){
         turn_left();
+    }
+
+    if(front_is_clear()){
+        step();
     }
 }
 
@@ -76,5 +76,5 @@ void kotva(){
     while(front_is_blocked()){
     turn_left();
     }
-    step();
+   step();
 }
