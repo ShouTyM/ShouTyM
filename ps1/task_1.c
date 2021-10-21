@@ -6,7 +6,7 @@ void naspat();
 void kotva();
 
 int main(){
-    turn_on("test00.kw");
+    turn_on("task_1.kw");
     
     set_step_delay(100);
 
