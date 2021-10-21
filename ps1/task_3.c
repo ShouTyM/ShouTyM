@@ -73,7 +73,7 @@ while(beepers_in_bag()){
         }else{
             praca();
         }
-    }else{
+        }else{
         turn_around();
         step();
         turn_right();
@@ -101,10 +101,30 @@ void navrat(){
     while(front_is_clear()){
         step();
     }
-    turn_around();
-    step();
-    while(not_facing_east()){
+   do{ 
+   while(not_facing_east()){
         turn_left();
+   }
+    while(front_is_clear()&&no_beepers_present()){
+        step();
     }
+    if(beepers_present()){
+        turn_around();
+       while(front_is_clear()){
+        step();
+        }
+        while(not_facing_east()){
+            turn_left();
+        }
+        turn_off();
+    }else{
+            turn_around();
+            while(front_is_clear()){
+            step();
+            }
+            turn_left();
+            step();
+    }
+    }while(beepers_present()==false);
     turn_off();
 }
