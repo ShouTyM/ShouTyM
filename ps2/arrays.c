@@ -53,14 +53,14 @@ int collatz(const int number){
 
 int opposite_number(const int n, const int number){
     if (n/2 == number){
-        opposite_number = n - number;
+        opposite_number = 0;
         return opposite_number;
     }else if(n/2 > number){
         opposite_number = (n/2) + number;
         return opposite_number;
     }else if(n/2 < number){
         opposite_number = (n/2) - number;
-        opposite_number = opposite_number - (opposite_number) + opposite_number;
+        opposite_number = (opposite_number - (opposite_number)) - opposite_number;
         return opposite_number;
     }
 }
