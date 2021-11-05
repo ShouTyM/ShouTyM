@@ -6,6 +6,8 @@ float unit_price(const float pack_price, const int rolls_count, const int pieces
 
 int collatz(const int number);
 
+int opposite_number(const int n, const int number);
+
 int main(){
 
 
@@ -47,4 +49,18 @@ int collatz(const int number){
 
     }
     return collatz;
+}
+
+int opposite_number(const int n, const int number){
+    if (n/2 == number){
+        opposite_number = n - number;
+        return opposite_number;
+    }else if(n/2 > number){
+        opposite_number = (n/2) + number;
+        return opposite_number;
+    }else if(n/2 < number){
+        opposite_number = (n/2) - number;
+        opposite_number = opposite_number - (opposite_number) + opposite_number;
+        return opposite_number;
+    }
 }
