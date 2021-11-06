@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 float lift_a_car(const int stick_length, const int human_weight, const int car_weight);
 
@@ -11,24 +12,15 @@ int opposite_number(const int n, const int number);
 int main(){
 
 
-
 return 0;
 }
 
 float lift_a_car(const int stick_length, const int human_weight, const int car_weight){
-  /*  printf("Zadaj dlzku palice: \n");
-    scanf("%d",&stick_length);
-    
-    printf("Zadaj hmotnost cloveka: \n");
-    scanf("%d",&human_weight);
-
-    printf("Zadaj hmotnost auta: \n");
-    scanf("%d",&car_weight);*/
-
-  double lift_a_car = (float)stick_length * human_weight / (human_weight + car_weight);
+   float lift_a_car;
+   
+   lift_a_car = (float)stick_length * (float)human_weight / (human_weight + (float)car_weight);
+   lift_a_car = round(lift_a_car * 100) / 100;
    return lift_a_car;
-
-   // printf("Dvih auta je: %.2f",r2);
 }
 
 float unit_price(const float pack_price, const int rolls_count, const int pieces_count){
@@ -37,30 +29,34 @@ float unit_price(const float pack_price, const int rolls_count, const int pieces
 }
 
 int collatz(const int number){
-    collatz = 1;
-    while(number != 1){
-        if(number %2 == 0){
-            number = number / 2;
-            collatz++;
+    int pocet = 1; 
+    int cislo = number;
+
+    while(cislo != 1){
+        if(cislo %2 == 0){
+            cislo = cislo / 2;
+            pocet++;
         }else{
-            number = (number * 3) + 1;
-            collatz++;
+            cislo = (cislo * 3) + 1;
+            pocet++;
         }
 
     }
-    return collatz;
+    return pocet;
 }
 
 int opposite_number(const int n, const int number){
-    if (n/2 == number){
-        opposite_number = 0;
-        return opposite_number;
-    }else if(n/2 > number){
-        opposite_number = (n/2) + number;
-        return opposite_number;
-    }else if(n/2 < number){
-        opposite_number = (n/2) - number;
-        opposite_number = (opposite_number - (opposite_number)) - opposite_number;
-        return opposite_number;
+    int opacne;
+    int i = n;
+    int c = number;
+
+    if (i/2 == c){
+        opacne = 0;
+    }else if(i/2 > c){
+        opacne = (i/2) + c;
+    }else if(i/2 < c){
+        opacne = (i/2) - c;
+        opacne = (opacne - (opacne)) - opacne;
     }
+    return opacne++;
 }
