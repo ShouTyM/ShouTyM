@@ -1,3 +1,6 @@
+#include <ctype.h>
+#include <string.h>
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -34,30 +37,15 @@ int get_word(char secret[]){
 }
 
 int is_word_guessed(const char secret[], const char letters_guessed[]){
-    int a = letters_guessed.size();
-    int b = secret.size();
+    char *guessed;
 
-    int i, j;
+    guessed = (char *) malloc(15);
 
-    bool guessed = true;
-
-    for(i = 0; i < a; i++){
-        arr[letters_guessed[i]] = 1;
-    }
-
-    for(i = 0; i < b; i++){
-        if(secret[i] != ' '){
-            if(arr[secret[i]] ==1){
-                continue;
-            }else{
-                guessed = false;
-                break;
-            }
+    for(int i = 0; i < strlen(secret); i++){
+        guessed = strchr(letters_guessed, secret[i]);
+        while(guessed == NULL){
+            return 0;
         }
     }
-    if (guessed){
-        return 1;
-    }else{
-        return 0;
-    }
+    return 1;
 }
