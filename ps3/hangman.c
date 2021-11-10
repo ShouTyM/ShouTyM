@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include "hangman.h"
-int is_word_guessed(const char secret[], const char letters_guessed[]);
 
 int get_word(char secret[]){
     // check if file exists first and is readable
@@ -41,11 +40,30 @@ int is_word_guessed(const char secret[], const char letters_guessed[]){
 
     guessed = (char *) malloc(15);
 
-    for(int i = 0; i < strlen(secret); i++){
+    for(int i = 0; i < strlen(secret); i++ ){
         guessed = strchr(letters_guessed, secret[i]);
         while(guessed == NULL){
             return 0;
         }
     }
     return 1;
+}
+
+void get_guessed_word(const char secret[], const char letters_guessed[], char guessed_word[]){
+    char guessed*;
+    
+    int j = 0;
+
+    guessed = (char *) malloc(15);
+
+    for(int i = 1; i < strlen(secret); i++ ){
+        if(i %2 != 0){
+            guessed = strchr(letters_guessed, secret[j++]);
+            guessed_word[i - 1] = guessed != NULL ? *najdi : '_';
+        }else{
+            guessed_word[i - 1] = ' ';
+        }
+    }
+    guessed_word[i] = '\0';
+    printf("%s",guessed_word);
 }
