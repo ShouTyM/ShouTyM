@@ -56,7 +56,7 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 
     guessed = (char *) malloc(15);
 
-    for( i = 1; i < strlen(secret); i++ ){
+    for( i = 1; i < (strlen(secret) * 2); i++ ){
         if(i %2 != 0){
             guessed = strchr(letters_guessed, secret[j++]);
             guessed_word[i - 1] = guessed != NULL ? *guessed : '_';
@@ -118,7 +118,7 @@ void hangman(const char secret[]){
     printf("I am thinking of a word that is %ld letters long.", strlen(slovo));
 
     while(hraj){
-        printf("-------------");
+        printf("\n-------------");
         printf("\nYou have %d guesses left.\nAvailable letters: ", pokus);
         get_available_letters(hodnota1, abeceda);
         
@@ -133,7 +133,7 @@ void hangman(const char secret[]){
         if(!strchr(abeceda, b)){
             printf("Oops! You've already guessed that letter: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
-            printf("\n-------------");
+           // printf("\n-------------");
             continue;
         }
 
@@ -142,7 +142,7 @@ void hangman(const char secret[]){
         if(strchr(slovo, b)){
             printf("Good guess: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
-            printf("\n-------------");
+          //  printf("\n-------------");
         
           if( strcmp(medzera, hodnota2) == 0){
             printf("\nCongratulations, you won!");
@@ -154,7 +154,7 @@ void hangman(const char secret[]){
             pokus--;
         
             if(pokus == 0){
-                printf("\nSorry, you ran out of guesses. The word was: %s.", slovo);
+                printf("\nSorry, you ran out of guesses. The word was: %s.\n", slovo);
                 break;
             }
         }
