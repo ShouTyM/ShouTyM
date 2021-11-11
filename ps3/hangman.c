@@ -51,15 +51,15 @@ int is_word_guessed(const char secret[], const char letters_guessed[]){
 
 void get_guessed_word(const char secret[], const char letters_guessed[], char guessed_word[]){
     char *guessed;
-    
+    int i;
     int j = 0;
 
     guessed = (char *) malloc(15);
 
-    for(int i = 1; i < strlen(secret); i++ ){
+    for( i = 1; i < strlen(secret); i++ ){
         if(i %2 != 0){
             guessed = strchr(letters_guessed, secret[j++]);
-            guessed_word[i - 1] = guessed != NULL ? *najdi : '_';
+            guessed_word[i - 1] = guessed != NULL ? *guessed : '_';
         }else{
             guessed_word[i - 1] = ' ';
         }
