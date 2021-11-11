@@ -100,7 +100,7 @@ void hangman(const char secret[]){
     char abeceda[30];
     char hodnota1[50] = "";
     char hodnota2[30] = "";
-    char s_l_o_v_o[30] = "";
+    char medzera[30] = "";
 
 
     get_word(slovo);
@@ -111,17 +111,18 @@ void hangman(const char secret[]){
     }
 
     for(j = 1; j < strlen(slovo) * 2; j++){
-        s_l_o_v_o[j - 1] = j % 2 == 0 ? ' ' : slovo[a++];
+        medzera[j - 1] = j % 2 == 0 ? ' ' : slovo[a++];
     } 
-    s_l_o_v_o[j] = '\0';
-    printf("Vitaj v hre hangman!\n");
-    printf("Myslim na slovo ktore je %ld pismen dlhe.", strlen(slovo));
+    medzera[j] = '\0';
+    printf("Welcome to the game, Hangman!\n");
+    printf("I am thinking of a word that is %ld letters long.", strlen(slovo));
 
     while(hraj){
-        printf("Tvoj zostavajuci pocet pokusov je: %d\nMozne znaky na pouzitie ostavaju: ", pokus);
+        printf("\n-------------");
+        printf("\nYou have %d guesses left.\nAvailable letters: ", pokus);
         get_available_letters(hodnota1, abeceda);
         
-        printf("Zadaj pismeno ktore myslis ze tam je: \n");
+        printf("\nPlease guess a letter: ");
         scanf("%c", &b);
 
         while(getchar() != '\n'){
@@ -130,21 +131,21 @@ void hangman(const char secret[]){
         b = tolower(b);
 
         if(!strchr(abeceda, b)){
-            printf("Toto pismeno si uz hadal: ");
+            printf("Oops! You've already guessed that letter: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
+            printf("\n-------------");
             continue;
         }
 
         hodnota1[i++] = b;
 
         if(strchr(slovo, b)){
-            printf("Spravne si uhadol: ");
+            printf("Good guess: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
+            printf("\n-------------");
         
-          if( strcmp(s_l_o_v_o, hodnota2) == 0){
-            printf(".......\n");
-            printf("VYHRAL SI!!!\n");
-            printf(".......\n");
+          if( strcmp(medzera, hodnota2) == 0){
+            printf("\nCongratulations, you won!");
             break;
         }
         }else{
@@ -153,9 +154,7 @@ void hangman(const char secret[]){
             pokus--;
         
             if(pokus == 0){
-                printf(".......\n");
-                printf("Minul si vsetky pokusy. Tajne slovo bolo: %s\n", slovo);
-                printf(".......\n");
+                printf("\nSorry, you ran out of guesses. The word was: %s.", slovo);
                 break;
             }
         }
