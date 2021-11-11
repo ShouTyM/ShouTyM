@@ -67,3 +67,98 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
     guessed_word[i] = '\0';
     printf("%s",guessed_word);
 }
+
+void get_available_letters(const char letters_guessed[], char available_letters[]){
+    int i;
+    int j = 0;
+    char *guessed;
+    char abeceda[] = "abcdefghijklmnopqrstuvwxyz";
+
+    guessed = (char *) malloc(15);
+
+
+    for(i = 0; i < strlen(abeceda); i++){
+        guessed = strchr(letters_guessed, abeceda[i]);
+        if(guessed != NULL){
+            continue;
+        }else{
+            available_letters[j++] = abeceda[i];
+        }
+    }
+    available_letters[j] = '\0';
+    printf("%s",available_letters);
+}
+
+void hangman(const char secret[]){
+    int i = 0;
+    int j;
+    int a = 0;
+    int hraj = 1;
+    int pokus = 8;
+    char b;
+    char slovo[15];
+    char abeceda[30];
+    char hodnota1[50] = "";
+    char hodnota2[30] = "";
+    char s_l_o_v_o[30] = "";
+
+
+    get_word(slovo);
+
+
+    for(j = 0; j < strlen(slovo); j++){
+        slovo[j] = tolower(slovo[j]);
+    }
+
+    for(j = 1; j < strlen(slovo) * 2; j++){
+        s_l_o_v_o[j - 1] = j % 2 == 0 ? ' ' : slovo[a++];
+    } 
+    s_l_o_v_o[j] = '\0';
+    printf("Vitaj v hre hangman!\n");
+    printf("Myslim na slovo ktore je %ld pismen dlhe.", strlen(slovo));
+
+    while(hraj){
+        printf("Tvoj zostavajuci pocet pokusov je: %d\nMozne znaky na pouzitie ostavaju: ", pokus);
+        get_available_letters(hodnota1, abeceda);
+        
+        printf("Zadaj pismeno ktore myslis ze tam je: \n");
+        scanf("%c", &b);
+
+        while(getchar() != '\n'){
+            ;
+        }
+        b = tolower(b);
+
+        if(!strchr(abeceda, b)){
+            printf("Toto pismeno si uz hadal: ");
+            get_guessed_word(slovo, hodnota1, hodnota2);
+            continue;
+        }
+
+        hodnota1[i++] = b;
+
+        if(strchr(slovo, b)){
+            printf("Spravne si uhadol: ");
+            get_guessed_word(slovo, hodnota1, hodnota2);
+        
+          if( strcmp(s_l_o_v_o, hodnota2) == 0){
+            printf(".......\n");
+            printf("VYHRAL SI!!!\n");
+            printf(".......\n");
+            break;
+        }
+        }else{
+            printf("Hmm. Toto pismeno nieje v tajnom slove: \n");
+            get_guessed_word(slovo, hodnota1, hodnota2);
+            pokus--;
+        
+            if(pokus == 0){
+                printf(".......\n");
+                printf("Minul si vsetky pokusy. Tajne slovo bolo: %s\n", slovo);
+                printf(".......\n");
+                break;
+            }
+        }
+    }
+    is_word_guessed(slovo, hodnota1);
+}
