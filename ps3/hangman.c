@@ -57,14 +57,14 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
     guessed = (char *) malloc(15);
 
     for( i = 1; i < (strlen(secret) * 2); i++ ){
-        if(i %2 != 0){
+        if(i % 2 != 0){
             guessed = strchr(letters_guessed, secret[j++]);
             guessed_word[i - 1] = guessed != NULL ? *guessed : '_';
         }else{
             guessed_word[i - 1] = ' ';
         }
     }
-    guessed_word[i] = '\0';
+    guessed_word[i - 1] = '\0';
     printf("%s",guessed_word);
 }
 
@@ -133,7 +133,6 @@ void hangman(const char secret[]){
         if(!strchr(abeceda, b)){
             printf("Oops! You've already guessed that letter: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
-           // printf("\n-------------");
             continue;
         }
 
@@ -142,10 +141,11 @@ void hangman(const char secret[]){
         if(strchr(slovo, b)){
             printf("Good guess: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
-          //  printf("\n-------------");
         
           if( strcmp(medzera, hodnota2) == 0){
-            printf("\nCongratulations, you won!");
+
+            printf("\n-------------");
+            printf("\nCongratulations, you won!\n");
             break;
         }
         }else{
@@ -154,6 +154,7 @@ void hangman(const char secret[]){
             pokus--;
         
             if(pokus == 0){
+                printf("\n-------------");
                 printf("\nSorry, you ran out of guesses. The word was: %s.\n", slovo);
                 break;
             }
