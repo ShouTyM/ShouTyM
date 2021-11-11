@@ -50,7 +50,7 @@ int is_word_guessed(const char secret[], const char letters_guessed[]){
 }
 
 void get_guessed_word(const char secret[], const char letters_guessed[], char guessed_word[]){
-    char guessed*;
+    char *guessed;
     
     int j = 0;
 
