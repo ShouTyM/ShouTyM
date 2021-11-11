@@ -112,13 +112,13 @@ void hangman(const char secret[]){
 
     for(j = 1; j < strlen(slovo) * 2; j++){
         medzera[j - 1] = j % 2 == 0 ? ' ' : slovo[a++];
-    } 
+    }
     medzera[j] = '\0';
     printf("Welcome to the game, Hangman!\n");
     printf("I am thinking of a word that is %ld letters long.", strlen(slovo));
 
     while(hraj){
-        printf("\n-------------");
+        printf("-------------");
         printf("\nYou have %d guesses left.\nAvailable letters: ", pokus);
         get_available_letters(hodnota1, abeceda);
         
@@ -149,7 +149,7 @@ void hangman(const char secret[]){
             break;
         }
         }else{
-            printf("Hmm. Toto pismeno nieje v tajnom slove: \n");
+            printf("Oops! That letter is not in my word: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
             pokus--;
         
