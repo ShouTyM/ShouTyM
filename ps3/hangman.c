@@ -94,7 +94,7 @@ void hangman(const char secret[]){
     int j;
     int a = 0;
     int hraj = 1;
-    int pokus = 8;
+    int pokus = 8; 
     char b;
     char slovo[15];
     char abeceda[30];
@@ -130,6 +130,7 @@ void hangman(const char secret[]){
         }
         b = tolower(b);
 
+        
         if(!strchr(abeceda, b)){
             printf("Oops! You've already guessed that letter: ");
             get_guessed_word(slovo, hodnota1, hodnota2);
