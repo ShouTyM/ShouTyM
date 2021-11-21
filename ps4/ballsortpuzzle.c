@@ -6,45 +6,47 @@ bool check(const int rows, const int columns, char field[rows][columns]);
 
 bool check(const int rows, const int columns, char field[rows][columns]){
     for(int i = 0; i < columns; i++){
-        if(field[0][i] == '*'){
-            if(field[1][i] == '*'){
-                if(field[2][i] == '*'){
-                    if(field[3][i] == '*'){
+        for(int j = 0; j < rows; j++){
+        if(field[j][i] == '*'){
+            if(field[j][i] == '*'){
+                if(field[j][i] == '*'){
+                    if(field[j][i] == '*'){
                         return true;
                     }
                 }
             }
         }
 
-        if(field[0][i] == '@'){
-            if(field[1][i] == '@'){
-                if(field[2][i] == '@'){
-                    if(field[3][i] == '@'){
+        if(field[j][i] == '@'){
+            if(field[j][i] == '@'){
+                if(field[j][i] == '@'){
+                    if(field[j][i] == '@'){
                         return true;
                     }
                 }
             }
         }
 
-        if(field[0][i] == '+'){
-            if(field[1][i] == '+'){
-                if(field[2][i] == '+'){
-                    if(field[3][i] == '+'){
+        if(field[j][i] == '+'){
+            if(field[j][i] == '+'){
+                if(field[j][i] == '+'){
+                    if(field[j][i] == '+'){
                         return true;
                     }
                 }
             }
         }
 
-        if(field[0][i] == '^'){
-            if(field[1][i] == '^'){
-                if(field[2][i] == '^'){
-                    if(field[3][i] == '^'){
+        if(field[j][i] == '^'){
+            if(field[j][i] == '^'){
+                if(field[j][i] == '^'){
+                    if(field[j][i] == '^'){
                         return true;
                     }
                 }
             }
         }
+    }
     }
     return false;
 }
