@@ -50,13 +50,28 @@ void generator(const int rows, const int columns, char field[rows][columns]){
 }
 
 bool check(const int rows, const int columns, char field[rows][columns]){
+int i;
+int j;
 
-    for(int i = 0; i < columns; i++){
-        for(int a = 0; a < rows; a++){
-            if(field[a][i] != field[a+1][i]){
-                return false;
+int hodnota1 = 0;
+int stlpec = 0;
+
+    for(i = 0; i < columns; i++){
+        for(j = 1; j < rows; j++){
+           if(field[i][j] == field[j - 1][i]){ 
+              hodnota1++;
+           }else{
+              hodnota1 = 0;
             }
-        }    
+        }
+        if(rows - 1 == hodnota1){
+            stlpec++;
+        }
+        hodnota1 = 0;
     }
-    return true;
+        if(columns == stlpec){
+            return true;
+        }else{
+            return false;
+        }
 }
