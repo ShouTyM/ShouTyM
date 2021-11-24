@@ -7,14 +7,14 @@ void encode_char(const char character, bool bits[8]);
 
 int main(){
     
-    bool bits1[8];
+/*    bool bits1[8];
     encode_char('A', bits1);
     for(int i = 0; i < 8; i++){
         printf("%d", bits1[i]);
         }
         printf("\n");
         // prints: 01000001
-
+*/
     return 0;
 }
 
