@@ -13,6 +13,8 @@ void decode_bytes(const int rows, bool bytes[rows][8], char string[rows]);
 
 void bytes_to_blocks(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]);
 
+void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]);
+
 int main(){
     
 /*    bool bits1[8];
@@ -72,6 +74,34 @@ int main(){
         }
     }
 */
+int length = 4 + 1;
+    bool blocks2[2*8][3] = {
+        {0,0,0},
+        {1,1,1},
+        {0,1,1},
+        {0,0,0},
+        {0,1,1},
+        {0,0,1},
+        {0,0,1},
+        {1,0,1},
+        {0,0,0},
+        {1,0,0},
+        {1,0,0},
+        {0,0,0},
+        {1,0,0},
+        {0,0,0},
+        {1,0,0},
+        {0,0,0}
+    };
+    bool bytes2[length][8];
+    blocks_to_bytes(3, 2, blocks2, length, bytes2);
+    for(int j = 0; j < length; j++){
+        for(int i = 0; i < 8; i++){
+            printf("%d", bytes2[j][i]);
+        }
+        printf("\n");
+    }
+
     return 0;
 }
 
@@ -146,4 +176,14 @@ for(off = offset; off>= 0; off--){
         }
     }
 }    
+}
+
+void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
+for(int off = 2; off >= 0; off--){    
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < cols; j++){
+            bytes[j][i] = blocks[i][j];
+        }    
+    }
+}
 }
