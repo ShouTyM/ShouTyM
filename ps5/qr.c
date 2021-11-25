@@ -73,7 +73,7 @@ int main(){
             printf("\n");
         }
     }
-*/
+
 int length = 4 + 1;
     bool blocks2[2*8][3] = {
         {0,0,0},
@@ -101,7 +101,7 @@ int length = 4 + 1;
         }
         printf("\n");
     }
-
+*/
     return 0;
 }
 
