@@ -13,6 +13,8 @@ void decode_bytes(const int rows, bool bytes[rows][8], char string[rows]);
 
 void bytes_to_blocks(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]);
 
+void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]);
+
 int main(){
     
 /*    bool bits1[8];
@@ -53,13 +55,12 @@ int main(){
 
 
     int length = 4+1, cols = 3, offset = 2;
-    bool bytes1[5+1][8] = {
+    bool bytes1[4+1][8] = {
         {0,1,0,0,0,0,0,1},
         {0,1,1,0,1,0,0,0},
         {0,1,1,0,1,1,1,1},
         {0,1,1,0,1,0,1,0},
-        {0,0,0,0,0,0,0,0},
-        {1,0,1,0,1,0,1,0}
+        {0,0,0,0,0,0,0,0}
     };
     bool blocks1[offset*8][cols];
     bytes_to_blocks(cols, offset, blocks1, length, bytes1);
@@ -144,9 +145,15 @@ void bytes_to_blocks(const int cols, const int offset, bool blocks[offset*8][col
                 if(riadok <= 8){
                 blocks[riadok][stlpec] = bytes[stlpec][riadok];
                 }else{
+                    if(rows < riadok){
+                        blocks[riadok][stlpec] = 0;
+                    }
                     blocks[riadok][stlpec] = bytes[stlpec+2][riadok];
                 }
             }
         }
     }
+}
+void blocks_to_bytes(const int cols, const int offset, bool blocks[offset*8][cols], const int rows, bool bytes[rows][8]){
+        
 }
