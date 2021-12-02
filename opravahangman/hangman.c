@@ -107,18 +107,24 @@ void hangman(const char secret[]){
 	int a = 0;
 	char hadane_slovo[30];
     char slovo[15];
-    int i;
+    int i, j, x = 0, y = 1;
 	char abcd[30] = "abcdefghijklmnopqrstuvwxyz";
-	
-	get_word(slovo);
+	char natiahnute[30] = "";
 
-   // slovo[strlen(slovo)-1] = '\0';
+	get_word(slovo);
+        for(j = 0; j < strlen(slovo); j++){
+            natiahnute[x] = slovo[j];
+            x = x + 2;
+            natiahnute[y] = ' ';
+            y = y + 2;
+        }
 
 	printf("Welcome to the game, Hangman!\n");
 	printf("I am thinking of a word that is %ld letters long.\n", strlen(slovo));
 	
 	while(hra){
         printf("\n%s\n", slovo);
+        printf("\n%s\n", natiahnute);
         printf("-------------\n");
 		printf("You have %d guesses left.\n", pokus);
 		printf("Available letters: ");
