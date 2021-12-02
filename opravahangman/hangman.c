@@ -99,18 +99,20 @@ void get_available_letters(const char letters_guessed[], char available_letters[
 }
 
 void hangman(const char secret[]){
-	int pokus = 16;
+	int pokus = 8;
 	int hra = 1;
-	char guess_a_letter;
+	char guess_a_letter[15];
 	char letters_guessed[30];
 	char abeceda[30];
 	int a = 0;
 	char hadane_slovo[30];
     char slovo[15];
-	
+    int i;
+	char abcd[30] = "abcdefghijklmnopqrstuvwxyz";
 	
 	get_word(slovo);
 
+   // slovo[strlen(slovo)-1] = '\0';
 
 	printf("Welcome to the game, Hangman!\n");
 	printf("I am thinking of a word that is %ld letters long.\n", strlen(slovo));
@@ -118,23 +120,38 @@ void hangman(const char secret[]){
 	while(hra){
         printf("\n%s\n", slovo);
         printf("-------------\n");
-		printf("You have %d guesses left.\n", pokus/2);
+		printf("You have %d guesses left.\n", pokus);
 		printf("Available letters: ");
 		get_available_letters(letters_guessed, abeceda);
 		printf("Please guess a letter: ");
-		scanf("%c", &guess_a_letter);
+		scanf("%s", guess_a_letter);
 
-        guess_a_letter = tolower(guess_a_letter);
+        for(i = 0; i < strlen(guess_a_letter); i++){
+            guess_a_letter[i] = tolower(guess_a_letter[i]);
+        }
+        if(strlen(guess_a_letter) > 1){
+            if(is_word_guessed(slovo, guess_a_letter)){
+                printf("Congratulations, you won!\n");
+            }else{
+                printf("Sorry, bad guess. The word was %s\n", slovo);
+            }
+            hra = 0;
+            return;
+        }
+        if(!strstr(abcd, guess_a_letter)){
+            printf("This %c is not valid letter!\n", guess_a_letter[0]);
+            continue;
+        }
 
-			if(strchr(letters_guessed, guess_a_letter)){
+			if(strstr(letters_guessed, guess_a_letter)){
 				printf("Oops! You've already guessed that letter: ");
 				get_guessed_word(slovo, letters_guessed, hadane_slovo);
                 continue;
 			}else{
-				letters_guessed[a] = guess_a_letter;
+				letters_guessed[a] = guess_a_letter[0];
 				a++;
 			
-		    	if(strchr(slovo, guess_a_letter)){
+		    	if(strstr(slovo, guess_a_letter)){
 			    	printf("Good guess: ");
 				    get_guessed_word(slovo, letters_guessed, hadane_slovo);
 			    }else{
@@ -144,7 +161,7 @@ void hangman(const char secret[]){
 			    }
              }   
                 
-	    	if(pokus < 8){
+	    	if(pokus == 0){
 		   		printf("Sorry, you ran out of guesses. The word was: %s\n", slovo);
 		    	hra = 0;
 		    }
