@@ -130,7 +130,7 @@ void hangman(const char secret[]){
             guess_a_letter[i] = tolower(guess_a_letter[i]);
         }
         if(strlen(guess_a_letter) > 1){
-            if(is_word_guessed(slovo, guess_a_letter)){
+            if(strstr(slovo, guess_a_letter)){
                 printf("Congratulations, you won!\n");
             }else{
                 printf("Sorry, bad guess. The word was %s\n", slovo);
