@@ -102,16 +102,26 @@ void hangman(const char secret[]){
 	char abeceda[30] = "abcdefghijklmnopqrstuvwxyz";
 	int a = 0;
 	char hadane_slovo[30] = "";
+<<<<<<< HEAD
     char slovo[30];
 	
 	get_word(slovo);
 
 	printf("Welcome to the game, Hangman!\n");
 	printf("I am thinking of a word that is %ld letters long.\n", strlen(slovo));
+=======
+	
+	
+	get_word(slovo);
+	
+	printf("Welcome to the game, Hangman!\n");
+	printf("I am thinking of a word that is %d letters long.\n", strlen(slovo));
+>>>>>>> 08ce996a780995d88647f2f9c447ce4fb757db34
 	
 	while(hra){
 		printf("-------------\n");
 		printf("You have %d guesses left.\n", pokus);
+<<<<<<< HEAD
 		printf("Available letters: ");
 		get_available_letters(letters_guessed, abeceda);
 		printf("Please guess a letter: ");
@@ -121,6 +131,18 @@ void hangman(const char secret[]){
 			
 			if(strchr(letters_guessed, guess_a_letter)){
 				printf("Oops! You've already guessed that letter: %d ", guess_a_letter);
+=======
+		printf("Available letters: %s\n");
+		get_available_letters(letters_guessed, abeceda);
+		printf("Please guess a letter: \n");
+		scanf("%c",&guess_a_letter);
+		
+			tolower(guess_a_letter);
+			
+			if(strchr(letters_guessed, guess_a_letter)){
+				printf("Oops! You've already guessed that letter: %c", guess_a_letter);
+				printf("%s");
+>>>>>>> 08ce996a780995d88647f2f9c447ce4fb757db34
 				get_guessed_word(slovo, letters_guessed, hadane_slovo);
 			}else{
 				letters_guessed[a] = guess_a_letter;
@@ -128,10 +150,17 @@ void hangman(const char secret[]){
 			}
 			
 			if(strchr(slovo, guess_a_letter)){
+<<<<<<< HEAD
 				printf("Good guess: ");
 				get_guessed_word(slovo, letters_guessed, hadane_slovo);
 			}else{
 				printf("Oops! That letter is not in my word: ");
+=======
+				printf("Good guess: %s");
+				get_guessed_word(slovo, letters_guessed, hadane_slovo);
+			}else{
+				printf("Oops! That letter is not in my word: %s");
+>>>>>>> 08ce996a780995d88647f2f9c447ce4fb757db34
 				get_guessed_word(slovo, letters_guessed, hadane_slovo);
 				pokus--;
 			}
@@ -143,7 +172,10 @@ void hangman(const char secret[]){
 			
 			if(is_word_guessed(slovo, letters_guessed)){
 				printf("Congratulations, you won!");
+<<<<<<< HEAD
                 hra = 0;
+=======
+>>>>>>> 08ce996a780995d88647f2f9c447ce4fb757db34
 			}
 	}
 	
