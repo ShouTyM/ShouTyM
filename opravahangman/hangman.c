@@ -63,7 +63,7 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 	
 	for(i = 0; i < strlen(secret); i++){
 		for(j = 0; j < strlen(letters_guessed); j++){
-			if(secret[i] == letters_guessed[j]){
+			if(secret[i] == letters_guessed[j] && secret[i] != ' '){
 				guessed_word[i] = letters_guessed[j];
 				break;
 			}else{
@@ -73,6 +73,31 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 	}
 	printf("%s\n", guessed_word);
 }
+
+/*void get_guess_word(const char secret[]; const char letters_guessed[]; char guessed_word[]){
+    int i;
+	int j;
+    int x = strlen(secret);
+    int y = 1;
+	
+	for(i = 0; i < strlen(secret); i++){
+		for(j = 0; j < strlen(letters_guessed); j++){
+			if(secret[i] == letters_guessed[j]){
+				guessed_word[i] = letters_guessed[j];
+				break;
+			}else{
+				guessed_word[i] = '_';
+			}
+		}
+	}
+        for(j = strlen(slovo); j >= 0; j--){
+            guessed_word[x] = guessed_word[j];
+            x = x - 2;
+            guessed_word[y] = ' ';
+            y = y + 2;
+        }
+        printf("%s\n", guessed_word);
+}*/
 
 void get_available_letters(const char letters_guessed[], char available_letters[]){
 	int i, j, x, y = 0;
@@ -105,26 +130,18 @@ void hangman(const char secret[]){
 	char letters_guessed[30];
 	char abeceda[30];
 	int a = 0;
-	char hadane_slovo[30];
+	char hadane_slovo[30] = "";
     char slovo[15];
-    int i, j, x = 0, y = 1;
+    int i; 
 	char abcd[30] = "abcdefghijklmnopqrstuvwxyz";
-	char natiahnute[30] = "";
 
 	get_word(slovo);
-        for(j = 0; j < strlen(slovo); j++){
-            natiahnute[x] = slovo[j];
-            x = x + 2;
-            natiahnute[y] = ' ';
-            y = y + 2;
-        }
 
+//    printf("%s\n", slovo);
 	printf("Welcome to the game, Hangman!\n");
 	printf("I am thinking of a word that is %ld letters long.\n", strlen(slovo));
 	
 	while(hra){
-        printf("\n%s\n", slovo);
-        printf("\n%s\n", natiahnute);
         printf("-------------\n");
 		printf("You have %d guesses left.\n", pokus);
 		printf("Available letters: ");
