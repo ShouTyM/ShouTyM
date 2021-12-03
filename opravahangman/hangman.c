@@ -71,13 +71,13 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 			}
 		}
 	}
-	printf("%s\n", guessed_word);
+	//printf("%s\n", guessed_word);
 }
 
 /*void get_guess_word(const char secret[]; const char letters_guessed[]; char guessed_word[]){
     int i;
 	int j;
-    int x = strlen(secret);
+    int x = 0;
     int y = 1;
 	
 	for(i = 0; i < strlen(secret); i++){
@@ -90,11 +90,9 @@ void get_guessed_word(const char secret[], const char letters_guessed[], char gu
 			}
 		}
 	}
-        for(j = strlen(slovo); j >= 0; j--){
-            guessed_word[x] = guessed_word[j];
-            x = x - 2;
-            guessed_word[y] = ' ';
-            y = y + 2;
+        for(j = 0; j < strlen(secet); j++){
+            guessed_word[x] = secret[j];
+            x = x + 2;
         }
         printf("%s\n", guessed_word);
 }*/
@@ -137,7 +135,7 @@ void hangman(const char secret[]){
 
 	get_word(slovo);
 
-//    printf("%s\n", slovo);
+    printf("%s\n", slovo);
 	printf("Welcome to the game, Hangman!\n");
 	printf("I am thinking of a word that is %ld letters long.\n", strlen(slovo));
 	
@@ -169,6 +167,10 @@ void hangman(const char secret[]){
 			if(strstr(letters_guessed, guess_a_letter)){
 				printf("Oops! You've already guessed that letter: ");
 				get_guessed_word(slovo, letters_guessed, hadane_slovo);
+                for(int x = 0; x < strlen(slovo); x++){
+                     printf("%c ",hadane_slovo[x]);
+                }
+                printf("\n");
                 continue;
 			}else{
 				letters_guessed[a] = guess_a_letter[0];
@@ -177,9 +179,18 @@ void hangman(const char secret[]){
 		    	if(strstr(slovo, guess_a_letter)){
 			    	printf("Good guess: ");
 				    get_guessed_word(slovo, letters_guessed, hadane_slovo);
+
+                    for(int x = 0; x < strlen(slovo); x++){
+                        printf("%c ",hadane_slovo[x]);
+                    }
+                    printf("\n");
 			    }else{
 				    printf("Oops! That letter is not in my word: ");
 				    get_guessed_word(slovo, letters_guessed, hadane_slovo);
+                    for(int x = 0; x < strlen(slovo); x++){
+                         printf("%c ",hadane_slovo[x]);
+                   }
+                    printf("\n");
 				    pokus--;  
 			    }
              }   
