@@ -3,6 +3,7 @@
 #include <ncurses.h>
 #include <time.h>
 #include <unistd.h>
+#include <ctype.h>
 
 int main(){
 
@@ -16,12 +17,12 @@ int main(){
     nodelay(stdscr, TRUE);
     int y = 10, x = 10, a;
     char b[5];
-    int min_y = 9; 
-    int min_x = 9;
-    int max_y = 0, max_x = 0;
-    int max_y1 = 38, max_x1 = 18;
-    int max_y2 = 28, max_x2 = 58;
-    int max_y3 = 38, max_x3 = 78;
+//    int min_y = 9; 
+//    int min_x = 9;
+  //  int max_y = 0, max_x = 0;
+   // int max_y1 = 38, max_x1 = 18;
+   // int max_y2 = 28, max_x2 = 58;
+   // int max_y3 = 38, max_x3 = 78;
     int mapa = 0;
     int moznost = 0;
 
@@ -83,6 +84,8 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 if(p == 8 || o == 8 || o == 79 || p == 39){
                     mvprintw(p, o, "#");
                     refresh();
+                }else{
+                    mvprintw(p, o, "");
                 }
             }
         }
@@ -92,7 +95,7 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         for(int p = 8; p < 30; p++){
             for(int o = 8; o < 60; o++){
                 if(o == 8 || o == 59 || p == 8 || p == 29){
-                mvprintw(p, o, "#");
+                mvprintw(p, o, "X");
                 refresh();
                 }
             }
@@ -114,46 +117,56 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         }
     }
 
-    while(mapa == 1 || mapa == 2 || mapa == 3){
+    while(mapa == 1 || mapa == 2 || mapa == 3 || mapa == 4){
         
         if(mapa == 1){
-            max_x = max_x1;
-            max_y = max_y1;
+            mvprintw(y, x, "O");
+            mapa = 4;
         }
 
         if(mapa == 2){
-            max_x = max_x2;
-            max_y = max_y2;
+            mvprintw(y, x, "O");
+            mapa = 4;
         }
 
         if(mapa == 3){
-            max_x = max_x3;
-            max_y = max_y3;
-        }
-
             mvprintw(y, x, "O");
-            refresh();
+            mapa = 4;
+        }
  
         a = getch();
             if(a == 'W' || a == 'w'){
-                if(y  != min_y){
-                    y--;
+                y--;
+                if(isspace(y)){
+                    mvprintw(y, x, "O");
                     mvprintw(y + 1, x," ");
+                    refresh();
+                }else{
+                    y++;
                 }
             }else if(a == 'A' || a == 'a'){
-                if(x != min_x){
-                    x--;
+                x--;
+                if(isspace(x)){
+                    mvprintw(y, x, "O");
                     mvprintw(y, x + 1, " ");
+                }else{
+                    x++;
                 }
             }else if(a == 'S' || a == 's'){
-                if(y != max_y){
                 y++;
-                mvprintw(y - 1, x, " ");
+                if(isspace(y)){
+                    mvprintw(y, x, "O");
+                    mvprintw(y - 1, x, " ");
+                }else{
+                    y--;
                 }
             }else if(a == 'D' || a == 'd'){
-                if(x != max_x){
                 x++;
-                mvprintw(y, x - 1, " ");
+                if(isspace(x)){
+                    mvprintw(y, x, "O");
+                    mvprintw(y, x - 1, " ");
+                }else{
+                    x--;
                 }
             }
     }
