@@ -89,6 +89,37 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 }
             }
         }
+    
+    mvprintw(9,9,  "    X   X   X    X X XX  X X     XX  X   X   X       X  X X  XXX   X C");
+    mvprintw(10,9, " XXXX XX XX  X X   X   X   X X X X X  XX   X   XX XX XX X  X X X X   X");
+    mvprintw(11,9, "    X X   XX    X XXXX XXX  XXXX X  X X  X X X   X  XX   X   X X X XX ");
+    mvprintw(12,9, " XX X X X   X X X         X X X   X     XX XX XXX  X X X X X     X  X ");
+    mvprintw(13,9, " X  X XX  XXX XX X XX X X X X  XXX XX X          X   X X X  XXX X  XX ");
+    mvprintw(14,9, "  XX   X X X  XX X  X XX  X  X   X      X X XX X X XXX   X  X X X X   ");
+    mvprintw(15,9, " X   X   X   X    X X   X    XXX  X XXXX X   X  XX XX XX  X X      XX ");
+    mvprintw(16,9, "   XX  X  XXXXX  X  X XX XX  X XX X   X  XX  X X   X  X  X   X XXX X  ");
+    mvprintw(17,9, " X   XX  XX    X   XX    X  X     X X  X    X    X  X  X X X  X X X X ");
+    mvprintw(18,9, " X X X X X  XX   X X  XX XXXX XX X X X  X   X XXX  X X  X  XXX  X     ");
+    mvprintw(19,9, "  X XX X X X   X     X       X X X   X     X     X    X XX X X XX XXX ");
+    mvprintw(20,9, " X     XX  X X X X X XX XX X     X X   X XX    X XXXX X    X   X  XX  ");
+    mvprintw(21,9, " X XXX    X     XX   X X   XXX X X  XX XX    X X X   X X X X X  X X X ");
+    mvprintw(22,9, " X  XX X X X X     XXX  XX   X  XXX     X  XX  X  XX X        X X X   ");
+    mvprintw(23,9, "X X    XXX X XXX X   X XX X XX XX  X XX  XX    X X   X X XX X       X ");
+    mvprintw(24,9, "   XX X    X   XX  XXX  X    X  XX    XX  X X XX   X   X  XX  X XXX X ");
+    mvprintw(25,9, " X  X  XXX  XX X X  X X XX X X X X XX  XXX X  X  X XX  X X  XX   XX X ");
+    mvprintw(26,9, " XX     XXX X XX  X X X   X  X X    X X      X   XX  XXX  X    X   X X");
+    mvprintw(27,9, "   X X X  X     X X X   XX  X   X XX  X XXXXX X X  X   XX  X XX XX X X");
+    mvprintw(28,9, " X  X  XX   X X   XXXXX X  X  X X  X XXX         X   X  XX X       X  ");
+    mvprintw(29,9, "X X XX X  X X   X        X  XX    XX  X  XXX XXX  X X X X    XXXX X  X");
+    mvprintw(30,9, "      X X X  XXXXXX X XXXXX   XX X  XX   X       X        XX       X  ");
+    mvprintw(31,9, " X XX    X  X       X X   XXX   X       X XX X X X  X X XX  XX  XX XX ");
+    mvprintw(32,9, " X   X X  X X XXXXX X X X X   XXX XX XXXX    XX  X XX  X   X XX    X  ");
+    mvprintw(33,9, "   XX XXX X X X   X XXX X X X X     XXX X XX X X  XX  X  XX    X XX X ");
+    mvprintw(34,9, "XX X    X    XX X X     X   X XX X X X    X          X  X   X XX X  X ");
+    mvprintw(35,9, "    XXX X XX    XX  X XXX X X  X X   X   X  X   XXX    X   X     X X  ");
+    mvprintw(36,9, " XX  X  X   X X X  XXXX X X XXXX XXX  X XX X X X X  X   X  XX XX    X ");
+    mvprintw(37,9, " X X XX X X  X  X XX          XX  X X    X    X   XX XX X X      X X  ");
+    mvprintw(38,9, "                  X  X X X XX    XX    X   XX   X      X  X X  X X   X");
     }
 
     if(mapa == 2){
@@ -100,7 +131,6 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 }
             }
         }
-    }
     mvprintw(9,10, "X");
     mvprintw(9,11, "X");
     mvprintw(9,13, "X");
@@ -535,6 +565,7 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
     mvprintw(27,48, " ");
     mvprintw(27,50, " ");
     mvprintw(27,57, " ");
+    }
 
     if(mapa == 1){
         for(int p = 8; p < 38; p++){
@@ -642,6 +673,8 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         }
 
         if(mapa == 3){
+            y = 38;
+            x = 9;
             mvprintw(y, x, "O");
             max_x = max_x3;
             max_y = max_y3;
