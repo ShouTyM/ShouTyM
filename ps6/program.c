@@ -4,8 +4,6 @@
 #include <time.h>
 #include <unistd.h>
 
-int timer();
-
 int main(){
 
     srand(time(NULL));
@@ -18,8 +16,12 @@ int main(){
     nodelay(stdscr, TRUE);
     int y = 10, x = 10, a;
     char b[5];
-    int min_y = 9, max_y = 28;
-    int min_x = 9, max_x = 78;
+    int min_y = 9; 
+    int min_x = 9;
+    int max_y = 0, max_x = 0;
+    int max_y1 = 38, max_x1 = 18;
+    int max_y2 = 28, max_x2 = 58;
+    int max_y3 = 38, max_x3 = 78;
     int mapa = 0;
     int moznost = 0;
 
@@ -75,18 +77,21 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
     }
 }
 
-
-
-
-
-
-
-
-    //spustenie mapy v
-    if(mapa == 1){
-        for(int p = 8; p < 30; p++){
+    if(mapa == 3){
+        for(int p = 8; p < 40; p++){
             for(int o = 8; o < 80; o++){
-                if(o == 8 || o == 79 || p == 8 || p == 29){
+                if(p == 8 || o == 8 || o == 79 || p == 39){
+                    mvprintw(p, o, "#");
+                    refresh();
+                }
+            }
+        }
+    }
+
+    if(mapa == 2){
+        for(int p = 8; p < 30; p++){
+            for(int o = 8; o < 60; o++){
+                if(o == 8 || o == 59 || p == 8 || p == 29){
                 mvprintw(p, o, "#");
                 refresh();
                 }
@@ -94,32 +99,59 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         }
     }
 
+    if(mapa == 1){
+        for(int p = 8; p < 40; p++){
+            for(int o = 8; o < 20; o++){
+                if(o == 8 || o == 19 || p == 8 || p == 39){
+                    mvprintw(p, o, "#");
+                    refresh();
+                }
+            }
+        }
+        for(int o = 10; o < 14; o++){
+            mvprintw(o, 16, "#");
+            refresh();
+        }
+    }
+
     while(mapa == 1 || mapa == 2 || mapa == 3){
         
-        mvprintw(y, x, "O");
-        refresh();
+        if(mapa == 1){
+            max_x = max_x1;
+            max_y = max_y1;
+        }
+
+        if(mapa == 2){
+            max_x = max_x2;
+            max_y = max_y2;
+        }
+
+        if(mapa == 3){
+            max_x = max_x3;
+            max_y = max_y3;
+        }
+
+            mvprintw(y, x, "O");
+            refresh();
+ 
         a = getch();
             if(a == 'W' || a == 'w'){
-                if(y == min_y){
-                }else{
+                if(y  != min_y){
                     y--;
                     mvprintw(y + 1, x," ");
                 }
             }else if(a == 'A' || a == 'a'){
-                if(x == min_x){
-                }else{
+                if(x != min_x){
                     x--;
                     mvprintw(y, x + 1, " ");
                 }
             }else if(a == 'S' || a == 's'){
-                if(y == max_y){
-                }else{
+                if(y != max_y){
                 y++;
                 mvprintw(y - 1, x, " ");
                 }
             }else if(a == 'D' || a == 'd'){
-                if(x == max_x){
-                }else{
+                if(x != max_x){
                 x++;
                 mvprintw(y, x - 1, " ");
                 }
