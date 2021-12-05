@@ -17,12 +17,12 @@ int main(){
     nodelay(stdscr, TRUE);
     int y = 0, x = 0, a;
     char b[5];
-//    int min_y = 9; 
-//    int min_x = 9;
-  //  int max_y = 0, max_x = 0;
-   // int max_y1 = 36, max_x1 = 16;
-   // int max_y2 = 28, max_x2 = 58;
-   // int max_y3 = 38, max_x3 = 78;
+    int min_y = 9; 
+    int min_x = 9;
+    int max_y = 0, max_x = 0;
+    int max_y1 = 36, max_x1 = 16;
+    int max_y2 = 28, max_x2 = 58;
+    int max_y3 = 38, max_x3 = 78;
     int mapa = 0;
     int moznost = 0;
 
@@ -123,10 +123,10 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
             mvprintw(r, 10, "X");
         }
         mvprintw(14, 9, "C");
-        for(int c = 9; c < 14; c++){
+        for(int c = 9; c < 15; c++){
             mvprintw(15, c, "X");
         }
-        for(int r = 14; r < 16; r++){
+        for(int r = 14; r < 17; r++){
             mvprintw(r, 16, "X");
         }
         for(int r = 16; r < 21; r++){
@@ -177,6 +177,14 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         for(int r = 31; r < 36; r++){
             mvprintw(r, 11, "X");
         }
+        mvprintw(35, 10, "X");
+        for(int r = 32; r < 36; r++){
+            mvprintw(r, 13, "X");
+        }
+        for(int c = 15; c < 17; c++){
+            mvprintw(35, c, "X");
+        }
+        mvprintw(33, 15, "X");
     }
 
     while(mapa == 1 || mapa == 2 || mapa == 3 || mapa == 4){
@@ -185,52 +193,50 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
             y = 36; 
             x = 12;
             mvprintw(y, x, "O");
+            max_x = max_x1;
+            max_y = max_y1;
             mapa = 4;
         }
 
         if(mapa == 2){
             mvprintw(y, x, "O");
+            max_x = max_x2;
+            max_y = max_y2;
             mapa = 4;
         }
 
         if(mapa == 3){
             mvprintw(y, x, "O");
+            max_x = max_x3;
+            max_y = max_y3;
             mapa = 4;
         }
  
         a = getch();
             if(a == 'W' || a == 'w'){
-                y--;
-                if(isspace(y)){
+                if(y != min_y){
+                    y--;
                     mvprintw(y, x, "O");
                     mvprintw(y + 1, x," ");
                     refresh();
-                }else{
-                    y++;
                 }
             }else if(a == 'A' || a == 'a'){
-                x--;
-                if(isspace(x)){
+                if(x != min_x){
+                    x--;
                     mvprintw(y, x, "O");
                     mvprintw(y, x + 1, " ");
-                }else{
-                    x++;
                 }
             }else if(a == 'S' || a == 's'){ 
-                y++;
-                if(isspace(y)){
+                if(y != max_y){
+                    y++;
                     mvprintw(y, x, "O");
                     mvprintw(y - 1, x, " ");
-                }else{
-                    y--;
                 }
             }else if(a == 'D' || a == 'd'){
-                x++;
-                if(isspace(x)){
+                if(x != max_x){
+                    x++;
                     mvprintw(y, x, "O");
                     mvprintw(y, x - 1, " ");
-                }else{
-                    x--;
                 }
             }
     }
