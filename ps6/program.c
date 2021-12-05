@@ -150,6 +150,33 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         for(int c = 10; c < 15; c++){
             mvprintw(21, c, "X");
         }
+        for(int r = 22; r < 28; r++){
+            mvprintw(r, 10, "X");
+        }
+        for(int c = 12; c < 15; c++){
+            mvprintw(23, c, "X");
+        }
+        for(int r = 24; r < 30; r++){
+            mvprintw(r, 12, "X");
+        }
+        for(int c = 14; c < 16; c++){
+            mvprintw(25, c, "X");
+        }
+        for(int r = 26; r < 32; r++){
+            mvprintw(r, 14, "X");
+        }
+        for(int c = 9; c < 12; c++){
+            mvprintw(29, c, "X");
+        }
+        for(int r = 30; r < 34; r++){
+            mvprintw(r, 9, "X");
+        }
+        for(int c = 11; c < 14; c++){
+            mvprintw(31, c, "X");
+        }
+        for(int r = 31; r < 36; r++){
+            mvprintw(r, 11, "X");
+        }
     }
 
     while(mapa == 1 || mapa == 2 || mapa == 3 || mapa == 4){
