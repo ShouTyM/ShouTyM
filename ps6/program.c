@@ -10,6 +10,7 @@ int main(){
     srand(time(NULL));
 
     initscr();
+    start_color();
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
@@ -25,6 +26,7 @@ int main(){
     int max_y3 = 38, max_x3 = 78;
     int mapa = 0;
     int moznost = 0;
+    init_pair(3, COLOR_BLUE, COLOR_GREEN);
 
 while(moznost == 0 || moznost == 1 || moznost == 2){
 
@@ -78,6 +80,8 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
     }
 }
 
+    init_pair(1, COLOR_BLUE, COLOR_WHITE);
+    attron(COLOR_PAIR(1));
     if(mapa == 3){
         for(int p = 8; p < 40; p++){
             for(int o = 8; o < 80; o++){
@@ -89,8 +93,12 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 }
             }
         }
-    
-    mvprintw(9,9,  "    X   X   X    X X XX  X X     XX  X   X   X       X  X X  XXX   X C");
+    mvprintw(9,9,  "    X   X   X    X X XX  X X     XX  X   X   X       X  X X  XXX   X ");
+    attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(3));
+    mvprintw(9,78, "C");
+    attroff(COLOR_PAIR(3));
+    attron(COLOR_PAIR(1));
     mvprintw(10,9, " XXXX XX XX  X X   X   X   X X X X X  XX   X   XX XX XX X  X X X X   X");
     mvprintw(11,9, "    X X   XX    X XXXX XXX  XXXX X  X X  X X X   X  XX   X   X X X XX ");
     mvprintw(12,9, " XX X X X   X X X         X X X   X     XX XX XXX  X X X X X     X  X ");
@@ -128,6 +136,8 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 if(o == 8 || o == 59 || p == 8 || p == 29){
                     mvprintw(p, o, "X");
                     refresh();
+                }else{
+                    mvprintw(p, o, " ");
                 }
             }
         }
@@ -177,7 +187,11 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
     mvprintw(10,53, "X");
     mvprintw(10,54, "X");
     mvprintw(10,55, "X");
+    attroff(COLOR_PAIR(1));
+    attron(COLOR_PAIR(3));
     mvprintw(10,56, "C");
+    attroff(COLOR_PAIR(3));
+    attron(COLOR_PAIR(1));
     mvprintw(11,10, "X");
     mvprintw(11,11, "X");
     mvprintw(11,12, "X");
@@ -573,6 +587,8 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                 if(o == 8 || o == 17 || p == 8 || p == 37){
                     mvprintw(p, o, "X");
                     refresh();
+                }else{
+                    mvprintw(p, o, " ");
                 }
             }
         }
@@ -587,7 +603,11 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         for(int r = 13; r < 15; r++){
             mvprintw(r, 10, "X");
         }
+        attroff(COLOR_PAIR(1));
+        attron(COLOR_PAIR(3));
         mvprintw(14, 9, "C");
+        attron(COLOR_PAIR(3));
+        attron(COLOR_PAIR(1));
         for(int c = 9; c < 15; c++){
             mvprintw(15, c, "X");
         }
@@ -651,13 +671,16 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
         }
         mvprintw(33, 15, "X");
     }
+    attroff(COLOR_PAIR(1));
 
     while(mapa == 1 || mapa == 2 || mapa == 3 || mapa == 4){
-        
+        init_pair(2, COLOR_RED, COLOR_WHITE);
+        attron(COLOR_PAIR(2));
         if(mapa == 1){
             y = 36; 
             x = 12;
             mvprintw(y, x, "O");
+            refresh();
             max_x = max_x1;
             max_y = max_y1;
             mapa = 4;
@@ -667,6 +690,7 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
             y = 28;
             x = 34;
             mvprintw(y, x, "O");
+            refresh();
             max_x = max_x2;
             max_y = max_y2;
             mapa = 4;
@@ -676,11 +700,12 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
             y = 38;
             x = 9;
             mvprintw(y, x, "O");
+            refresh();
             max_x = max_x3;
             max_y = max_y3;
             mapa = 4;
         }
- 
+        
         a = getch();
             if(a == 'W' || a == 'w'){
                 if(y != min_y){
@@ -708,6 +733,7 @@ while(moznost == 0 || moznost == 1 || moznost == 2){
                     mvprintw(y, x - 1, " ");
                 }
             }
+     attroff(COLOR_PAIR(2));
     }
 
     getchar();
