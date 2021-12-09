@@ -7,79 +7,29 @@ void naspat();
 void kotva();
 
 int main(){
-    turn_on("task_1.kw");
+    turn_on("round1.kw");
     
     set_step_delay(100);
 
-    kotva();
-
-    while(beepers_in_bag()==false){
-        skakanie();
+    step();
+    while(no_beepers_present() == false){
+        pick_beeper();
     }
-
-    while(not_facing_north()){
+    while(no_beepers_in_bag() == false){
+        step();
+        put_beeper();
+        turn_left();
         turn_left();
     }
-
-    while(beepers_present()==false){
-        naspat();
-    }
-    
-    pick_beeper();
-    
-     do{
+    while(not_facing_west()){
         turn_left();
-     }while(not_facing_west());
+    }
+    while(front_is_clear()){
+        step();
+    }
+    turn_left();
+    turn_left();
 
     turn_off();
     return 0;
-}
-
-void turn_right(){
-    turn_left();
-    turn_left();
-    turn_left();
-}
-
-    
-void skakanie(){ 
-
-    if(front_is_blocked()){
-       turn_left();
-    }
-
-    if(front_is_clear()){
-       step();
-       test();
-    }
-    
-    if(right_is_clear()){
-       turn_right();
-    }
-}
-
-void naspat(){
-    if(front_is_blocked()&&left_is_blocked()){
-        turn_right();
-    }
-
-    if(left_is_clear()){
-       turn_left();
-    }
-
-    if(front_is_clear()){
-       step();
-    }
-}
-
-void kotva(){
-    while(no_beepers_in_bag()==false){
-        put_beeper();
-    }
-}
-
-void test(){
-    if(beepers_present()){
-        pick_beeper();
-    }
 }
