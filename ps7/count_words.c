@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+//#define _XOPEN_SOURCE_EXTENDED 1
+#include <unistd.h>
 
 int main(){
 
@@ -10,7 +12,6 @@ int main(){
     char ch;
     subor = fopen("bananas.txt", "r+");
     char array[7] = "bananas";
-//    void* buffer = malloc(1000);
     int pos;
 
     while(1){
@@ -26,7 +27,7 @@ int main(){
         }
         
         while(1){
-            if( ch == array[i]){
+            if( ch == array[i] && ch != EOF){
                 fseek(subor, 1, SEEK_CUR);
                 i++;
                 if(i == 7){
@@ -41,6 +42,11 @@ int main(){
             }
         }
     }
+    printf("%d", pocet);
+    fclose(subor);
+    truncate("bananas.txt",1);
+    subor = fopen("bananas.txt", "r+");
+    printf("%d", pocet);
     fclose(subor);
     return 0;
 }
